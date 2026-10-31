@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKLSTXXVEP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JKLSTXXVEP');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>松農園 Pine Farm - 自然、純粹、永續的有機農場</title>
+    <meta name="description" content="松農園提供有機蔬菜箱、療癒小盆栽、家庭菜園認養與親子體驗規劃，讓大自然成為孩子的天然教室。">
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#2D543B">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="松農園">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pine: {
+                            50: '#F2F7F4',
+                            100: '#E2ECE5',
+                            600: '#3A6B4C',
+                            700: '#2D543B',
+                            800: '#22402D',
+                        },
+                        wood: {
+                            100: '#F9F6F0',
+                            200: '#EFEAE1',
+                            600: '#B08D57',
+                            700: '#8C6D43',
+                            800: '#695030',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+        body {
+            overscroll-behavior-y: none;
+            -webkit-tap-highlight-color: transparent;
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+        button, a, select, input, textarea { touch-action: manipulation; }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(34, 64, 45, 0.5), rgba(34, 64, 45, 0.7)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80');
+            background-color: #22402D; /* 離線或圖片未載入時的底色 */
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+            min-height: 90svh; /* 行動瀏覽器網址列不遮擋 */
+        }
+
+        /* ---- PWA / RWD：安全區域（瀏海、Home 指示條） ---- */
+        .app-nav { padding-top: env(safe-area-inset-top); }
+        .app-footer { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+        .cart-panel { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+        #toast { bottom: calc(1.25rem + env(safe-area-inset-bottom)); }
+
+        /* ---- 觸控目標至少 44px ---- */
+        .product-filter-btn { min-height: 44px; }
+
+        /* ---- 減少動態效果 ---- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+            html { scroll-behavior: auto !important; }
+        }
+
+/* Pine Farm 2.0 — contemporary editorial garden design */
+:root{--pf-cream:#f7f5ed;--pf-forest:#193f32;--pf-sage:#a6b9a0;--pf-ochre:#d9b77d}
+html{scroll-padding-top:92px}body{background:var(--pf-cream)!important}
+.app-nav{background:rgba(247,245,237,.95)!important;box-shadow:0 3px 30px rgba(25,63,50,.06)}
+.app-nav .max-w-7xl{max-width:1400px}
+.hero-bg{min-height:82svh;background-image:linear-gradient(95deg,rgba(16,45,32,.88),rgba(16,45,32,.30)),url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1920&q=85');background-position:center 55%;text-align:left}
+.hero-bg>div:first-child{margin-left:max(2vw,0px);max-width:1050px;text-align:left}
+.hero-bg h1{font-weight:800;letter-spacing:-.04em;line-height:1.16;max-width:930px}
+.hero-bg h1 span{color:#d5e9b7!important}
+.hero-bg p{margin-left:0;max-width:650px}
+.hero-bg .flex.flex-col{align-items:flex-start}
+section{scroll-margin-top:85px}
+section h2{letter-spacing:-.035em;line-height:1.25}
+#about,#products,#experiences,#story,#contact{position:relative}
+#about{padding-top:100px;padding-bottom:100px}
+#products{background:#e9ede2!important}
+#experiences{background:#f7f5ed}
+#story{background:#214d3a!important}
+#contact{padding-top:110px;padding-bottom:110px}
+#facebook-community{background:#e6eddf!important;border-top:1px solid #d4dfce}
+#facebook-community a,.hero-bg a{transition:transform .2s,background .2s}
+#facebook-community a:hover,.hero-bg a:hover{transform:translateY(-3px)}
+.contact-social-card{border-radius:30px;padding:clamp(26px,5vw,60px);background:#214d3a;color:#fff;box-shadow:0 22px 55px rgba(25,63,50,.15)}
+.pf-section-note{display:inline-flex;padding:9px 16px;border-radius:99px;background:#fff7e8;color:#785a22;font-weight:700;font-size:12px;letter-spacing:.04em}
+.pf-mobile-dock{display:none}
+@media(max-width:767px){.hero-bg{min-height:76svh;background-position:60% center}.hero-bg>div:first-child{margin-left:0}.hero-bg h1{font-size:clamp(35px,9vw,55px)}.hero-bg p{font-size:16px}.hero-bg .flex.flex-col{align-items:stretch}.hero-bg .flex.flex-col a{text-align:center}#about,#contact{padding-top:64px;padding-bottom:70px}#products,#experiences,#story{padding-top:64px;padding-bottom:64px}.app-footer{padding-bottom:calc(6.5rem + env(safe-area-inset-bottom))}.pf-mobile-dock{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:45;justify-content:space-around;align-items:center;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:rgba(248,247,241,.97);border-top:1px solid #dce3d5;box-shadow:0 -10px 35px #193f3217}.pf-mobile-dock a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#214d3a;min-width:60px}.pf-mobile-dock i{font-size:20px}.pf-mobile-dock .pf-fb{color:#1765bc}}
+
+    </style>
+</head>
+<body class="bg-wood-100 text-pine-800 antialiased selection:bg-pine-600 selection:text-white">
+
+<nav class="pf-mobile-dock" aria-label="手機快速導覽"><a href="#about"><i class="fa-solid fa-house"></i>首頁</a><a href="#products"><i class="fa-solid fa-seedling"></i>農園</a><a href="#story"><i class="fa-solid fa-leaf"></i>故事</a><a class="pf-fb" href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i>Facebook</a><a href="#contact"><i class="fa-solid fa-envelope"></i>聯絡</a></nav>
+    <!-- Notification Toast -->
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 left-4 right-4 sm:left-auto sm:right-5 z-50 pointer-events-none transform translate-y-24 opacity-0 transition-all duration-300 bg-pine-800 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toast-message" class="font-medium">操作成功！</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="app-nav sticky top-0 z-40 bg-wood-100/90 backdrop-blur-md border-b border-wood-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 sm:h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-pine-700 rounded-2xl flex items-center justify-center text-white shadow-md">
+                        <i class="fa-solid fa-tree text-2xl text-emerald-300"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-pine-800 block">松農園</span>
+                        <span class="text-xs uppercase tracking-widest text-wood-700 font-medium">Pine Farm</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="font-medium text-pine-800 hover:text-pine-600 transition-colors">關於我們</a>
+                    <a href="#products" class="font-medium text-pine-800 hover:text-pine-600 transition-colors">農園探索</a>
+                    <a href="#experiences" class="font-medium text-pine-800 hover:text-pine-600 transition-colors">體驗規劃</a>
+                    <a href="#story" class="font-medium text-pine-800 hover:text-pine-600 transition-colors">品牌故事</a>
+                    <a href="#contact" class="font-medium text-pine-800 hover:text-pine-600 transition-colors">聯絡我們</a>
+                </div>
+
+                <a href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer" class="font-medium text-pine-800 hover:text-pine-600 transition-colors" aria-label="松農園 Facebook 粉絲專頁"><i class="fa-brands fa-facebook mr-1"></i> Facebook</a>
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button type="button" class="install-btn hidden bg-wood-200 hover:bg-wood-300 text-pine-800 px-4 py-2.5 rounded-xl font-medium transition-colors">
+                        <i class="fa-solid fa-download mr-2"></i>安裝 App
+                    </button>
+                    <button onclick="openBookingModal()" class="bg-pine-700 hover:bg-pine-800 text-white px-5 py-2.5 rounded-xl font-medium shadow-lg shadow-pine-700/20 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-calendar-days mr-2"></i>體驗規劃中
+                    </button>
+                    <div class="relative">
+                        <button onclick="showCart()" aria-label="開啟購物車" class="p-2.5 rounded-xl bg-wood-200 text-pine-800 hover:bg-wood-300 transition-colors relative">
+                            <i class="fa-solid fa-shopping-bag text-lg"></i>
+                            <span id="cart-count" class="absolute -top-1 -right-1 bg-pine-700 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <button onclick="showCart()" aria-label="開啟購物車" class="p-2.5 rounded-xl bg-wood-200 text-pine-800 relative">
+                        <i class="fa-solid fa-shopping-bag text-lg"></i>
+                        <span id="cart-count-mobile" class="absolute -top-1 -right-1 bg-pine-700 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" aria-label="開啟選單" class="p-2.5 rounded-xl bg-wood-200 text-pine-800">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-wood-100 border-b border-wood-200 px-6 py-4 space-y-4 shadow-xl">
+            <a href="#about" onclick="toggleMobileMenu()" class="block font-medium text-pine-800">關於我們</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block font-medium text-pine-800">農園探索</a>
+            <a href="#experiences" onclick="toggleMobileMenu()" class="block font-medium text-pine-800">體驗規劃</a>
+            <a href="#story" onclick="toggleMobileMenu()" class="block font-medium text-pine-800">品牌故事</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block font-medium text-pine-800">聯絡我們</a>
+            <a href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer" class="block font-medium text-blue-700"><i class="fa-brands fa-facebook mr-2"></i>追蹤 Facebook</a>
+            <button type="button" class="install-btn hidden w-full bg-wood-200 text-pine-800 py-3 rounded-xl font-medium">
+                <i class="fa-solid fa-download mr-2"></i>安裝 App 到主畫面
+            </button>
+            <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full bg-pine-700 text-white py-3 rounded-xl font-medium shadow-md">
+                <i class="fa-solid fa-calendar-days mr-2"></i>體驗規劃中
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg flex items-center justify-center text-center px-4 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto space-y-8 z-10 py-16">
+            <span class="inline-flex items-center space-x-2 bg-emerald-900/60 backdrop-blur-md text-emerald-200 px-4 py-2 rounded-full text-sm font-medium border border-emerald-500/30">
+                <i class="fa-solid fa-house-chimney-window"></i>
+                <span>高雄大社 · 真實種植日常 · 自然生活</span>
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight">
+                親近自然，<span class="text-emerald-400">種出生活的好心情。</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-wood-200 max-w-2xl mx-auto font-light leading-relaxed">
+                從高雄大社的一方菜畦開始，記錄蔬菜生長與生活裡的綠意。療癒小景觀盆栽與體驗空間仍在規劃中，邀請你一起關注農園日常。
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#products" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-4 rounded-2xl shadow-xl shadow-emerald-900/30 transition-all transform hover:-translate-y-1">
+                    探索松農園 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-medium px-8 py-4 rounded-2xl transition-all">
+                    追蹤 Facebook <i class="fa-brands fa-facebook ml-2"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-12 sm:h-20 text-wood-100 preserve-3d">
+                <path d="M0 30L60 38.3C120 47 240 63 360 68.3C480 73 600 67 720 55C840 43 960 27 1080 23.3C1200 20 1320 30 1380 35L1440 40V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V30Z" fill="currentColor"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Value Proposition / About Highlights -->
+    <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-wood-700 font-semibold uppercase tracking-widest text-sm">Family Farm Concept</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-pine-800">從一方土地，開始自然生活</h2>
+            <p class="text-wood-800 text-base sm:text-lg">松農園目前以蔬菜種植與農園日常紀錄為主；療癒盆栽工作區與小溫室為未來規劃，相關服務以正式公告為準。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-wood-200/50 border border-wood-200 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-pine-50 rounded-2xl flex items-center justify-center text-pine-700 text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-people-roof"></i>
+                </div>
+                <h3 class="text-xl font-bold text-pine-800 mb-3">家庭專屬菜園租用</h3>
+                <p class="text-gray-600 leading-relaxed">假日帶孩子來松農園當一日小農！親手播種、施肥、澆水，享受親手收割有機蔬菜的成就感。</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-wood-200/50 border border-wood-200 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-pine-50 rounded-2xl flex items-center justify-center text-pine-700 text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3 class="text-xl font-bold text-pine-800 mb-3">療癒小盆栽與陽台菜園</h3>
+                <p class="text-gray-600 leading-relaxed">嚴選適合居家與辦公的療癒小盆栽、香草及免土耕家庭種植箱，讓綠意輕鬆融入日常生活。</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-wood-200/50 border border-wood-200 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-pine-50 rounded-2xl flex items-center justify-center text-pine-700 text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3 class="text-xl font-bold text-pine-800 mb-3">100% 無毒安心食材</h3>
+                <p class="text-gray-600 leading-relaxed">嚴格把關有機蔬菜與家庭蔬果箱，讓全家人吃得健康、吃得安心，遠離農藥殘留。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="products" class="py-20 bg-wood-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-wood-700 font-semibold uppercase tracking-widest text-sm">Family Gardening & Produce</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-pine-800 mt-2">家庭農園方案與嚴選療癒植栽</h2>
+                </div>
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2">
+                    <button onclick="filterProducts('all')" class="product-filter-btn active-filter bg-pine-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors">全部商品</button>
+                    <button onclick="filterProducts('plot')" class="product-filter-btn bg-white text-pine-800 hover:bg-wood-300 px-4 py-2 rounded-xl text-sm font-medium transition-colors">家庭菜園認養</button>
+                    <button onclick="filterProducts('plant')" class="product-filter-btn bg-white text-pine-800 hover:bg-wood-300 px-4 py-2 rounded-xl text-sm font-medium transition-colors">療癒小盆栽</button>
+                    <button onclick="filterProducts('box')" class="product-filter-btn bg-white text-pine-800 hover:bg-wood-300 px-4 py-2 rounded-xl text-sm font-medium transition-colors">家庭有機蔬菜箱</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-lg border border-wood-200 flex flex-col justify-between" data-category="plot">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" alt="假日家庭專屬小菜園認養" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-pine-700 text-white text-xs font-semibold px-3 py-1 rounded-full">家庭首選</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs text-wood-700 font-medium uppercase tracking-wider">家庭菜園認養</span>
+                            <h3 class="text-lg font-bold text-pine-800 mt-1">假日家庭專屬小菜園 (半年期)</h3>
+                            <p class="text-gray-500 text-sm mt-2 line-clamp-2">提供 3 坪專屬栽培地，附贈有機種苗與農具使用，假日全家一起體驗農夫樂趣！</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xl font-bold text-pine-700">NT$ 3,600</span>
+                            <button onclick="addToCart('假日家庭專屬小菜園 (半年期)', 3600)" class="bg-pine-50 hover:bg-pine-700 hover:text-white text-pine-700 p-3 rounded-xl transition-colors">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-lg border border-wood-200 flex flex-col justify-between" data-category="plant">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80" alt="桌面療癒多肉植物小盆栽" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-wood-700 text-white text-xs font-semibold px-3 py-1 rounded-full">居家療癒</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs text-wood-700 font-medium uppercase tracking-wider">療癒小盆栽</span>
+                            <h3 class="text-lg font-bold text-pine-800 mt-1">親子手作多肉植物療癒小盆栽</h3>
+                            <p class="text-gray-500 text-sm mt-2 line-clamp-2">內含精選好照顧的多肉植物與手作陶盆，培養孩子觀察力與耐心，為家裡增添綠意。</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xl font-bold text-pine-700">NT$ 380</span>
+                            <button onclick="addToCart('親子手作多肉植物療癒小盆栽', 380)" class="bg-pine-50 hover:bg-pine-700 hover:text-white text-pine-700 p-3 rounded-xl transition-colors">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-lg border border-wood-200 flex flex-col justify-between" data-category="plant">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80" alt="陽台香草植物小盆栽組" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-wood-700 text-white text-xs font-semibold px-3 py-1 rounded-full">芳香實用</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs text-wood-700 font-medium uppercase tracking-wider">療癒小盆栽</span>
+                            <h3 class="text-lg font-bold text-pine-800 mt-1">陽台香草植物小盆栽組 (薄荷/迷迭香)</h3>
+                            <p class="text-gray-500 text-sm mt-2 line-clamp-2">適合放置於陽台或廚房窗台，散發天然清香，隨時可採摘入菜或泡茶。</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xl font-bold text-pine-700">NT$ 420</span>
+                            <button onclick="addToCart('陽台香草植物小盆栽組', 420)" class="bg-pine-50 hover:bg-pine-700 hover:text-white text-pine-700 p-3 rounded-xl transition-colors">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-lg border border-wood-200 flex flex-col justify-between" data-category="box">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&w=600&q=80" alt="家庭號有機蔬菜箱" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">每週配送</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs text-wood-700 font-medium uppercase tracking-wider">家庭有機蔬菜箱</span>
+                            <h3 class="text-lg font-bold text-pine-800 mt-1">溫馨家庭號有機蔬菜箱 (每週配送)</h3>
+                            <p class="text-gray-500 text-sm mt-2 line-clamp-2">內含 8-9 種清晨現採無毒有機葉菜與根莖，專為雙薪家庭與育兒家庭設計的營養箱。</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xl font-bold text-pine-700">NT$ 680</span>
+                            <button onclick="addToCart('溫馨家庭號有機蔬菜箱', 680)" class="bg-pine-50 hover:bg-pine-700 hover:text-white text-pine-700 p-3 rounded-xl transition-colors">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farm Experiences & Picking Tours Section -->
+    <section id="experiences" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-wood-700 font-semibold uppercase tracking-widest text-sm">Parent-Child Farming</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-pine-800">假日親子體驗規劃與手作課程</h2>
+            <p class="text-wood-800 text-base sm:text-lg">帶孩子走入大自然，在泥土與歡笑中體驗播種與收割，享受最溫馨的家庭週末時光。</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Experience 1 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-wood-200 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80" alt="親子小小農夫體驗營" class="w-full h-48 object-cover">
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-wood-700 font-semibold mb-2">
+                            <span><i class="fa-solid fa-clock mr-1"></i> 約 2.5 小時</span>
+                            <span><i class="fa-solid fa-user-group mr-1"></i> 親子家庭同行</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-pine-800">親子小小農夫一日體驗營</h3>
+                        <p class="text-gray-600 text-sm mt-2">由專業農夫帶領爸媽與小朋友認識有機蔬菜生長，親手下田播種、抓菜蟲並採收當季無毒蔬菜帶回家！</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">家庭票 (一大一小)</span>
+                            <span class="text-lg font-bold text-pine-700">NT$ 980</span>
+                        </div>
+                        <button onclick="openBookingModal('親子小小農夫一日體驗營')" class="bg-pine-700 hover:bg-pine-800 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-md">體驗規劃中</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-wood-200 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80" alt="療癒小盆栽手作課" class="w-full h-48 object-cover">
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-wood-700 font-semibold mb-2">
+                            <span><i class="fa-solid fa-clock mr-1"></i> 約 1.5 小時</span>
+                            <span><i class="fa-solid fa-user-group mr-1"></i> 每場限額 15 人</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-pine-800">親子多肉與香草小盆栽手作課</h3>
+                        <p class="text-gray-600 text-sm mt-2">學習如何搭配土壤、挑選多肉與香草植物，動手創作專屬的桌面療癒小盆栽，培養美感與專注力。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">每組費用 (含盆栽帶回)</span>
+                            <span class="text-lg font-bold text-pine-700">NT$ 650</span>
+                        </div>
+                        <button onclick="openBookingModal('親子多肉與香草小盆栽手作課')" class="bg-pine-700 hover:bg-pine-800 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-md">體驗規劃中</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 3 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-wood-200 flex flex-col">
+                <img src="https://images.unsplash.com/photo-1511497584788-876761142212?auto=format&fit=crop&w=600&q=80" alt="松林親子野餐與生態導覽" class="w-full h-48 object-cover">
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-wood-700 font-semibold mb-2">
+                            <span><i class="fa-solid fa-clock mr-1"></i> 約 3 小時</span>
+                            <span><i class="fa-solid fa-user-group mr-1"></i> 全家同樂</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-pine-800">松林芬多精親子野餐導覽</h3>
+                        <p class="text-gray-600 text-sm mt-2">在百年松樹林下享受親子野餐時光，由生態講師帶領認識森林昆蟲與植物，度過輕鬆愉快的週末。</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">家庭票 (至多4人)</span>
+                            <span class="text-lg font-bold text-pine-700">NT$ 1,200</span>
+                        </div>
+                        <button onclick="openBookingModal('松林芬多精親子野餐導覽')" class="bg-pine-700 hover:bg-pine-800 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-md">體驗規劃中</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farm Story Section -->
+    <section id="story" class="py-20 bg-pine-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#E2ECE5_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-emerald-400 font-semibold uppercase tracking-widest text-sm">Our Heritage</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight">三代人的耕耘，守護土地的純粹承諾</h2>
+                    <p class="text-emerald-100 font-light leading-relaxed">
+                        松農園自創立以來，始終秉持著「敬畏自然、永續共生」的核心價值。我們拒絕破壞生態的化學藥劑，堅信每一棵樹、每一株草、每一滴山泉都是大自然最珍貴的寶藏。
+                    </p>
+                    <p class="text-emerald-100 font-light leading-relaxed">
+                        在這裡，我們不僅是種植農作物，更是在修復土壤、培育生物多樣性。邀請您與我們一同感受這片土地的溫暖與生命力。
+                    </p>
+                    <div class="grid grid-cols-3 gap-6 pt-4 border-t border-emerald-700/60">
+                        <div>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-emerald-300 block">35+</span>
+                            <span class="text-xs text-emerald-200 mt-1 block">年有機耕耘</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-emerald-300 block">12公頃</span>
+                            <span class="text-xs text-emerald-200 mt-1 block">生態保留園區</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-emerald-300 block">10,000+</span>
+                            <span class="text-xs text-emerald-200 mt-1 block">滿意訪客好評</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="松農園歷史與環境" class="rounded-3xl shadow-2xl border-4 border-emerald-700/40 w-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Inquiry Section -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <span class="text-wood-700 font-semibold uppercase tracking-widest text-sm">Get in Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-pine-800">聯絡松農園</h2>
+                <p class="text-wood-800">想了解農園近況、產品與未來活動？歡迎透過 Facebook 私訊聯絡；尚未公告的服務暫不開放預約。</p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-wood-200 text-pine-700 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-pine-800">農園地址</h4>
+                            <p class="text-gray-600 text-sm">高雄市大社區保舍甲</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-wood-200 text-pine-700 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-pine-800">連絡電話</h4>
+                            <p class="text-gray-600 text-sm">請透過 Facebook 粉絲專頁聯繫</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-wood-200 text-pine-700 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-pine-800">電子信箱</h4>
+                            <p class="text-gray-600 text-sm">Facebook 私訊洽詢</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-wood-200">
+                <div class="contact-social-card"><span class="text-sm font-semibold tracking-widest">LET'S CONNECT</span><h3 class="text-2xl font-bold mt-3">一起關注松農園的日常</h3><p class="mt-3 opacity-80">農園最新消息、種植紀錄與活動公告，請以 Facebook 粉絲專頁為準。</p><a href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 mt-6 bg-white text-pine-800 rounded-full px-7 py-4 font-bold"><i class="fa-brands fa-facebook"></i> 前往 Facebook 私訊</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-wood-200 transform transition-all relative">
+            <button onclick="closeBookingModal()" aria-label="關閉" class="absolute top-3 right-3 sm:top-6 sm:right-6 w-11 h-11 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-pine-800 mb-2">家庭農園體驗快速預約</h3>
+            <p class="text-gray-500 text-sm mb-6">請填寫您的預約資訊，我們將會發送確認信至您的信箱。</p>
+            
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-pine-800 mb-1">選擇體驗項目</label>
+                    <select id="modal-experience-select" class="w-full bg-wood-100 border border-wood-200 rounded-xl px-4 py-3 text-pine-800 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                        <option>親子小小農夫一日體驗營</option>
+                        <option>親子多肉與香草小盆栽手作課</option>
+                        <option>松林芬多精親子野餐導覽</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-pine-800 mb-1">預約日期</label>
+                        <input type="date" required class="w-full bg-wood-100 border border-wood-200 rounded-xl px-4 py-3 text-pine-800 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-pine-800 mb-1">參加人數</label>
+                        <input type="number" min="1" max="20" value="2" required class="w-full bg-wood-100 border border-wood-200 rounded-xl px-4 py-3 text-pine-800 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-pine-800 mb-1">聯絡人姓名</label>
+                    <input type="text" required class="w-full bg-wood-100 border border-wood-200 rounded-xl px-4 py-3 text-pine-800 focus:outline-none focus:ring-2 focus:ring-pine-600" placeholder="請輸入姓名">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-pine-800 mb-1">連絡電話</label>
+                    <input type="tel" required class="w-full bg-wood-100 border border-wood-200 rounded-xl px-4 py-3 text-pine-800 focus:outline-none focus:ring-2 focus:ring-pine-600" placeholder="請輸入手機號碼">
+                </div>
+                <button type="submit" class="w-full bg-pine-700 hover:bg-pine-800 text-white font-medium py-3.5 rounded-xl shadow-lg transition-all mt-4">
+                    確認送出預約
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal / Drawer Simulation -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex justify-end">
+        <div class="cart-panel bg-white w-full max-w-md h-full p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+                    <h3 class="text-xl font-bold text-pine-800 flex items-center">
+                        <i class="fa-solid fa-shopping-bag mr-2 text-pine-700"></i> 購物車清單
+                    </h3>
+                    <button onclick="hideCart()" aria-label="關閉" class="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-gray-600 text-xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="cart-items" class="py-6 space-y-4">
+                    <!-- Dynamic Cart Items -->
+                    <p class="text-gray-500 text-center py-10">購物車目前是空的喔！</p>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-gray-200 space-y-4">
+                <div class="flex justify-between items-center text-lg font-bold text-pine-800">
+                    <span>總計：</span>
+                    <span id="cart-total">NT$ 0</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-pine-700 hover:bg-pine-800 text-white font-medium py-3.5 rounded-xl shadow-lg transition-all">
+                    前往結帳
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Facebook community section -->
+    <section id="facebook-community" class="bg-wood-100 py-12 px-5 text-center">
+      <div class="max-w-3xl mx-auto rounded-3xl bg-white p-8 shadow-sm border border-wood-200">
+        <p class="text-sm tracking-widest text-pine-700 mb-2">松農園 · 社群動態</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-pine-800 mb-3">一起記錄農園的日常</h2>
+        <p class="text-gray-600 mb-6">追蹤我們的 Facebook，看看蔬菜種植紀錄、農園近況與最新消息。</p>
+        <a href="https://www.facebook.com/share/19ptVfUE7S/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold px-7 py-3 rounded-xl"><i class="fa-brands fa-facebook mr-2"></i>前往松農園 Facebook</a>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="app-footer bg-pine-800 text-wood-200 border-t border-pine-700/60 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white">
+                            <i class="fa-solid fa-tree text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">松農園</span>
+                    </div>
+                    <p class="text-sm text-emerald-100 font-light leading-relaxed">
+                        傳遞土地的溫暖與純粹，提供最天然的有機農產與森林體驗。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">快速導覽</h4>
+                    <ul class="space-y-2 text-sm text-emerald-100">
+                        <li><a href="#about" class="hover:text-white transition-colors">關於我們</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">農園探索</a></li>
+                        <li><a href="#experiences" class="hover:text-white transition-colors">體驗規劃</a></li>
+                        <li><a href="#story" class="hover:text-white transition-colors">品牌故事</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">服務項目</h4>
+                    <ul class="space-y-2 text-sm text-emerald-100">
+                        <li><a href="#experiences" class="hover:text-white transition-colors">採果導覽預約</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">有機禮盒訂購</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">企業團體參訪</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">小農合作提案</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">關注我們</h4>
+                    <p class="text-sm text-emerald-100 mb-4">追蹤我們的社群，獲得最新收成資訊與體驗活動優惠。</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-pine-700 hover:bg-emerald-600 rounded-xl flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-pine-700 hover:bg-emerald-600 rounded-xl flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-pine-700 hover:bg-emerald-600 rounded-xl flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-pine-700/60 pt-8 text-center text-xs text-emerald-200">
+                <p>&copy; 2026 松農園 Pine Farm. All Rights Reserved. Designed with organic care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // 購物車（以 localStorage 保存，重新開啟 App 仍在）
+        let cart = [];
+        try { cart = JSON.parse(localStorage.getItem('pinefarm-cart') || '[]'); } catch (e) { cart = []; }
+
+        let toastTimer;
+        function showToast(message, duration = 3000) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, duration);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.product-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pine-700', 'text-white');
+                btn.classList.add('bg-white', 'text-pine-800');
+            });
+            event.target.classList.remove('bg-white', 'text-pine-800');
+            event.target.classList.add('bg-pine-700', 'text-white');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`已將「${name}」加入購物車`);
+        }
+
+        function updateCartUI() {
+            try { localStorage.setItem('pinefarm-cart', JSON.stringify(cart)); } catch (e) {}
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-count-mobile').innerText = totalCount;
+
+            const container = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-gray-500 text-center py-10">購物車目前是空的喔！</p>`;
+                totalElement.innerText = `NT$ 0`;
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                html += `
+                    <div class="flex justify-between items-center bg-wood-100 p-4 rounded-xl">
+                        <div>
+                            <h4 class="font-bold text-pine-800 text-sm">${item.name}</h4>
+                            <span class="text-xs text-gray-500">NT$ ${item.price} × ${item.quantity}</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateQuantity(${index}, 1)" class="w-7 h-7 bg-white rounded-lg shadow text-pine-700 font-bold">+</button>
+                            <button onclick="updateQuantity(${index}, -1)" class="w-7 h-7 bg-white rounded-lg shadow text-pine-700 font-bold">-</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            totalElement.innerText = `NT$ ${total}`;
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function showCart() {
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function hideCart() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('購物車是空的，無法結帳！');
+                return;
+            }
+            showToast('模擬結帳成功！感謝您的訂購。');
+            cart = [];
+            updateCartUI();
+            hideCart();
+        }
+
+        function openBookingModal(experienceName = '') {
+            const modal = document.getElementById('booking-modal');
+            if (experienceName) {
+                const select = document.getElementById('modal-experience-select');
+                for (let option of select.options) {
+                    if (option.value === experienceName) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            closeBookingModal();
+            showToast('預約申請已送出！我們將以電話或簡訊與您確認。');
+            document.getElementById('booking-form').reset();
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showToast('諮詢表單已送出，感謝您的留言！');
+            document.getElementById('contact-form').reset();
+        }
+
+        // 載入時還原購物車數量
+        updateCartUI();
+
+        // Esc 關閉彈窗 / 購物車
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeBookingModal(); hideCart(); }
+        });
+
+        /* ================= PWA ================= */
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+        const installBtns = document.querySelectorAll('.install-btn');
+        let deferredPrompt = null;
+
+        function setInstallVisible(show) {
+            installBtns.forEach(b => b.classList.toggle('hidden', !show));
+        }
+
+        // Android / Chrome / Edge：攔截安裝提示，改由按鈕觸發
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!isStandalone) setInstallVisible(true);
+        });
+
+        window.addEventListener('appinstalled', () => {
+            deferredPrompt = null;
+            setInstallVisible(false);
+            showToast('已安裝松農園 App！');
+        });
+
+        installBtns.forEach(btn => btn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                setInstallVisible(false);
+            } else if (isIOS) {
+                showToast('請點瀏覽器的「分享」圖示，再選「加入主畫面」', 6000);
+            }
+        }));
+
+        // iOS Safari 沒有 beforeinstallprompt，直接顯示說明按鈕
+        if (isIOS && !isStandalone) setInstallVisible(true);
+
+        // 網路狀態提示
+        window.addEventListener('offline', () => showToast('目前離線，部分內容可能無法更新'));
+        window.addEventListener('online', () => showToast('已恢復連線'));
+
+        // Service Worker（需透過 https 或 localhost 提供）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then((reg) => {
+                    reg.addEventListener('updatefound', () => {
+                        const nw = reg.installing;
+                        if (!nw) return;
+                        nw.addEventListener('statechange', () => {
+                            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                                showToast('網站已更新，重新開啟即可使用新版本', 5000);
+                            }
+                        });
+                    });
+                }).catch((err) => console.warn('Service Worker 註冊失敗：', err));
+            });
+        }
+    </script>
+</body>
+</html>
